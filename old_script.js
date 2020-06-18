@@ -24,15 +24,13 @@ const checkGameWon = () => {
     [2, 4, 6]
   ]
 
-  let won = false;
   winningLines.forEach(line => {
     let board = game.board.flat();
     if (board[line[0]] !== null && board[line[0]] === board[line[1]] && board[line[1]] === board[line[2]]) {
-      won = true;
+      this.won = true;
     }
   })
-  game.won = won;
-  return won;
+  return this.won
 }
 
 squares.forEach(square => {
