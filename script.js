@@ -42,6 +42,7 @@ squares.forEach(square => {
     }
     game.board[Math.floor((square.id - 1) / 3)][(square.id -1) % 3] = game.nextMove;
     if (checkGameWon()) {
+      turn.innerText = "";
       document.querySelector('.winner').innerText = `${game.nextMove} wins!`
     } else {
       game.nextMove = game.nextMove == 'X' ? 'O' : 'X';
@@ -62,6 +63,6 @@ document.querySelector('#restart').addEventListener('click', () => {
     nextMove: 'X',
     won: false
   }
-  
+
   turn.innerText = `${game.nextMove}'s turn.`
 })
