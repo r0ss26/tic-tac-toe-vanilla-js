@@ -6,6 +6,9 @@ let game = {
   won: false
 }
 
+let turn = document.querySelector('.turn');
+turn.innerText = `${game.nextMove}'s turn.`;
+
 const checkGameWon = () => {
   const winningLines = [
     // Rows
@@ -42,6 +45,7 @@ squares.forEach(square => {
       document.querySelector('.winner').innerText = `${game.nextMove} wins!`
     } else {
       game.nextMove = game.nextMove == 'X' ? 'O' : 'X';
+      document.querySelector('.turn').innerText = `${game.nextMove}'s turn.`
     }
   })
 })
@@ -52,10 +56,12 @@ document.querySelector('#restart').addEventListener('click', () => {
   })
 
   document.querySelector('.winner').innerText = "";
-
+  
   game = {
     board: [ new Array(3).fill(null), new Array(3).fill(null), new Array(3).fill(null) ],
     nextMove: 'X',
     won: false
   }
+  
+  turn.innerText = `${game.nextMove}'s turn.`
 })
