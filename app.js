@@ -70,20 +70,21 @@ squares = document.querySelectorAll('.square');
 winner = document.querySelector('.winner');
 turn = document.querySelector('.turn');
 restartButton = document.querySelector('#restart');
+
+
 squares.forEach(square => {
   square.addEventListener('click', () => {
     if (square.innerText == "" && !game.won) {
+      game.board[Math.floor((square.id - 1) / 3)][(square.id -1) % 3].status = game.nextMove;
       square.innerText = game.nextMove;
-    }
-    game.board[Math.floor((square.id - 1) / 3)][(square.id -1) % 3].status = game.nextMove;
-    
-    if (game.checkGameWon()) {
-      game.winner = game.nextMove;
-      game.displayWinner(winner);
-      turn.innerText = "";
-    } else {
-      game.togglePlayer();
-      game.displayCurrentPlayer(turn);
+      if (game.checkGameWon()) {
+        game.winner = game.nextMove;
+        game.displayWinner(winner);
+        turn.innerText = "";
+      } else {
+        game.togglePlayer();
+        game.displayCurrentPlayer(turn);
+      }
     }
   })
 })
@@ -96,7 +97,6 @@ restartButton.addEventListener('click', () => {
   turn.innerText = `${game.nextMove}'s turn.`
   document.querySelector('.winner').innerText = "";
 })
-
 
 let game = new Game;
 game.displayCurrentPlayer(turn);
